@@ -49,6 +49,15 @@ routes.patch('/product/:id', bodyParser.json(),(req, res)=>{
 routes.delete('/product/:id',(req ,res)=>{
     products.deleteProduct(req, res)
 })
+routes.get('/shoes', (req, res)=>{
+    products.fetchShoes(req,res)
+})
+routes.get('/tops', (req, res)=>{
+    products.fetchTops(req,res)
+})
+routes.get('/bottoms', (req, res)=>{
+    products.fetchBottoms(req,res)
+})
 
 //Orders Router
 

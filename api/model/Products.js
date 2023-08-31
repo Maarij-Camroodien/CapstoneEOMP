@@ -17,6 +17,48 @@ fetchProducts(req, res){
     })  
     })
 }
+fetchShoes(req, res){
+    const query = `
+    SELECT * FROM Products
+    WHERE Category = 'Shoes';
+    `
+    db.query(query,
+       (err, results) =>{
+        if (err) throw err
+    res.json({
+        status: res.statusCode,
+        results,
+    })  
+    })
+}
+fetchTops(req, res){
+    const query = `
+    SELECT * FROM Products
+    WHERE Category = 'Tops';
+    `
+    db.query(query,
+       (err, results) =>{
+        if (err) throw err
+    res.json({
+        status: res.statusCode,
+        results,
+    })  
+    })
+}
+fetchBottoms(req, res){
+    const query = `
+    SELECT * FROM Products
+    WHERE Category = 'Bottoms';
+    `
+    db.query(query,
+       (err, results) =>{
+        if (err) throw err
+    res.json({
+        status: res.statusCode,
+        results,
+    })  
+    })
+}
  fetchProduct(req,res){
     const query = `
     SELECT prodID, prodName,
