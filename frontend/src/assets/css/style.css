@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Smythe&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    overflow-x: hidden;
+    /* display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto minmax(100vh, 1fr) auto; */
+}
+
+h1 {
+    font-family: 'Smythe', cursive;
+}
