@@ -10,7 +10,7 @@
       <div class="navbar-nav ms-auto">
         <router-link to="/" class="nav-link">HOME</router-link>
         <router-link to="/about" class="nav-link">ABOUT</router-link>
-        <router-link to="/admin" class="nav-link">ADMIN</router-link>
+        <router-link to="/admin" class="nav-link" v-show="isAdmin">ADMIN</router-link>
         <router-link to="/products" class="nav-link">PRODUCTS</router-link>
         <router-link to="/contactus" class="nav-link">CONTACT US</router-link>
         <router-link to="/login" class="nav-link">LOGIN</router-link>
@@ -24,8 +24,21 @@
 </template>
 
 <script>
+import { useCookies } from 'vue3-cookies'
+const {cookies} = useCookies()
     export default {
-        
+        computed: {
+          user() {
+            return this.$store.state.user ||
+            cookies.get('LegitUser')
+          },
+          result() {
+          return this.user?.result
+        },
+        isAdmin() {
+          return this.result?.userRole?.toLowerCase() === "admin"
+        }
+        },
     }
 </script>
 

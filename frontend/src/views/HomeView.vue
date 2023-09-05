@@ -49,11 +49,18 @@
               </div>
       </div>
 
-      <div class="imgg1">
+      <div class="imgg1" id="immg1">
         <div class="row">
                 <h2 class="col-md-6 animate__animated animate__fadeInDown animate__delay-3s"><span style="color:white">"VINTG": KICKS</span>
                 <span><p>Step back in time and elevate your style with our exquisite collection of vintage shoes</p><router-link to="/shoes" class="btn" role="button ">View Kicks</router-link></span></h2>
                 <img src="https://i.postimg.cc/HsyV7d01/wallpaperflare-com-wallpaper-15.jpg" class="col-md-6 animate__animated animate__fadeInDown animate__delay-2s" alt="img2" loading="lazy">
+              </div>
+      </div>
+      <div class="imgg1-1">
+        <div class="row">
+          <img src="https://i.postimg.cc/HsyV7d01/wallpaperflare-com-wallpaper-15.jpg" class="col-md-6 animate__animated animate__fadeInDown animate__delay-2s" alt="img2" loading="lazy">
+                <h2 class="col-md-6 animate__animated animate__fadeInDown animate__delay-3s"><span style="color:white">"VINTG": KICKS</span>
+                <span><p>Step back in time and elevate your style with our exquisite collection of vintage shoes</p><router-link to="/shoes" class="btn" role="button ">View Kicks</router-link></span></h2>
               </div>
       </div>
 
@@ -80,6 +87,10 @@ h1{
   font-family: 'Smythe', cursive;
 }
 
+.imgg1-1{
+  display: none;
+}
+
 .slogan {
   font-family: 'Taviraj', serif;
 }
@@ -101,7 +112,7 @@ p{
   color: white;
 }
 
-.imgg1 {
+.row {
   background-color: black;
 }
 
@@ -111,9 +122,47 @@ p{
   font-family: 'Taviraj', serif;
 }
 
+
 .btn:hover {
   color: brown;
   background-color: black;
 }
+
+
+@media screen and (max-width: 780px){
+  .imgg1-1{
+  display: flex;
+}
+
+#immg1{
+  display: none;
+}
+
+h2{
+  margin-top: 0;
+  height: 20rem;
+  width: 100%;
+  padding-top: 5rem;
+}
+}
+
+@media screen and (max-width: 768px){
+  .imgg1-1{
+  display: flex;
+}
+
+#immg1{
+  display: none;
+}
+
+h2{
+  margin-top: 0;
+  height: 20rem;
+  width: 100%;
+  padding-top: 5rem;
+}
+}
+
+
 
 </style>

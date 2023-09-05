@@ -21,7 +21,7 @@
               <tr v-for="product in products" :key="product.productID">
                 <td>{{ product.prodID }}</td>
                 <td>{{ product.prodName }}</td>
-                <td>{{ product.amount }}</td>
+                <td>R{{ product.amount }}</td>
                 <td>{{ product.Category }}</td>
                 <td>
                   <img :src="product.prodUrl" :alt="product.prodName" style="width: 5rem; height: 6rem" loading="lazy">
@@ -30,7 +30,7 @@
                     <button class="btn"><EditProduct/></button>
                 </td>
                 <td>
-                  <button class="btn btn-dark" @click="deleteProduct(product.prodID)">Delete</button>
+                  <button class="btn btn-dark" id="btns" @click="deleteProduct(product.prodID)">Delete</button>
                 </td>
               </tr>
             </tbody>
@@ -67,9 +67,9 @@
               <td>
                 <img :src="user.userProfile" :alt="user.userName" style="width: 7rem; height: 10rem" loading="lazy">
               </td>
-              <td> <button class="btn btn-dark" @click="editUser(user.userID)">Edit</button></td>
+              <td><button class="btn"><EditUser/></button></td>
               <td>
-                <button class="btn btn-dark" @click="deleteUser(user.userID)">Delete</button>
+                <button class="btn btn-dark" id="btns" @click="deleteUser(user.userID)">Delete</button>
               </td>
             </tr>
           </tbody>
@@ -84,12 +84,14 @@
   import AddProduct from '@/components/AddProduct.vue';
   import AddUser from '@/components/AddUser.vue';
   import EditProduct from '@/components/EditProduct.vue';
+  import EditUser from '@/components/EditUser.vue';
 //   import Spinner from '@/components/SpinnerVue.vue';
   export default {
     components: {
       AddProduct,
       AddUser,
-      EditProduct
+      EditProduct,
+      EditUser
     //   Spinner
     },
     computed: {
@@ -117,9 +119,23 @@
   <style scoped>
   h2 {
     margin-top: 2rem;
+    font-family: 'Smythe', cursive;
   }
   h1 {
     margin-top: 2rem;
   }
+
+  #btns {
+  color: white;
+  border: 1px solid black;
+  background-color: black;
+  font-family: 'Taviraj', serif;
+  margin: 2px;
+}
+
+#btns:hover {
+  color: brown;
+  background-color: white;
+}
   </style>
   

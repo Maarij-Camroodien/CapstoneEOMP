@@ -16,6 +16,9 @@
             <h5 class="card-text">R {{ $route.query.amount }}</h5>
           </div>
         </div>
+        <div class="col">
+            
+        </div>
       </div>
     </div>
 </template>

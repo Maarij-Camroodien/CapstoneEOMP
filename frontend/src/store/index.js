@@ -1,7 +1,12 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
+import sweet from 'sweetalert'
+import {useCookies} from 'vue3-cookies'
+import authUser from '@/services/AuthenticateUser'
+import router from '@/router'
 const caps= "https://capstoneeomp.onrender.com/"
 // const caps= "http://localhost:3000/"
+const {cookies} = useCookies()
 
 export default createStore({
   state: {
@@ -15,6 +20,7 @@ export default createStore({
     tops: null,
     bottoms: null,
     editProduct: null,
+    editUser: null,
   },
   getters: {
   },
@@ -37,6 +43,9 @@ export default createStore({
     addUsers(state, data) {
       state.addUsers = data
     },
+    addUser(state, user) {
+      state.user = user
+    },
     setDeleteP(state, data){
       state.products = data
     },
@@ -55,6 +64,9 @@ export default createStore({
     editProducts(state, data) {
       state.editProduct = data
     },
+    editUsers(state, data) {
+      state.editUser = data
+    },
   },
   actions: {
     async fetchUsers(context) {
@@ -65,6 +77,20 @@ export default createStore({
         console.log(e)
       }
     },
+    addToCart(product) {
+      // Send a request to your API to add the product to the cart
+      axios.post('http://your-api-url/cart/add', { product }).then((response) => {
+        // Update the cart in the Vuex store
+        this.$store.commit('addToCart', product);
+      });
+    },
+    removeFromCart(productId) {
+      // Send a request to your API to remove the product from the cart
+      axios.delete(`http://your-api-url/cart/remove/${productId}`).then(() => {
+        // Update the cart in the Vuex store
+        this.$store.commit('removeFromCart', productId);
+      });
+    },
     async fetchProducts(context) {
       try{
         const {data} = await axios.get(`${caps}products`)
@@ -74,22 +100,33 @@ export default createStore({
         console.log(e)
       }
     },
+    async fetchUsers(context) {
+      try{
+        const {data} = await axios.get(`${caps}users`)
+        context.commit("setUsers", data.results)
+        console.log(data.results);
+      }catch(e){
+        console.log(e)
+      }
+    },
     async addProduct(context, prodData){
       try {
         const response = await axios.post(`${caps}product`, prodData)
         context.commit('addContent', response.data)
+        location.reload()
       } catch (error) {
         console.log(error);
       }
     },
-    async addUser(context, userData){
-      try {
-        const response = await axios.post(`${caps}user`, userData)
-        context.commit('addUsers', response.data)
-      } catch (error) {
-        console.log(error);
-      }
-    },
+    // async addUser(context, userData){
+    //   try {
+    //     const response = await axios.post(`${caps}user`, userData)
+    //     context.commit('addUser', response.data)
+    //     location.reload()
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // },
     async deleteUserFUNC(context, userID){
       try {
         const response = await axios.delete(`${caps}user/${userID}`)
@@ -108,15 +145,6 @@ export default createStore({
         console.log(error);
       }
     },
-    // async editProduct(context, prodData){
-    //   try {
-    //     const response = await axios.patch(`${caps}product/${prodData}`)
-    //     context.commit('setUpdateProd', response.data)
-    //     location.reload()
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // },
     async fetchShoes(context) {
       try{
         const {data} = await axios.get(`${caps}shoes`)
@@ -144,13 +172,76 @@ export default createStore({
     async editProduct(context, edprod){
       try {
         console.log(edprod)
-        const response = await axios.put(`${caps}product/${edprod.prodID}`, edprod)
+        const response = await axios.patch(`${caps}product/${edprod.prodID}`, edprod)
         context.commit('editProducts', response.data)
+        location.reload()
       } catch (error) {
         console.log(error);
       }
     },
+    async editUser(context, edUser){
+      try {
+        console.log(edUser)
+        const response = await axios.patch(`${caps}user/${edUser.userID}`, edUser)
+        context.commit('editUsers', response.data)
+        location.reload()
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async login(context, payload) {
+      try {
+        const { msg, token, result } = (await axios.post(`${caps}login`, payload)).data
+        if(result) {
+          context.commit("setUser", {result, msg});
+          cookies.set("LegitUser", {token, msg, result})
+          authUser.applyToken(token)
+          sweet({
+            title: msg,
+            text: `Welcome back ${result?.firstName} ${result?.lastName}`,
+            icon: "success",
+            timer: 2000
+          })
+          router.push({name: 'home'})
+        } else {
+          sweet({
+            title: "Error",
+            text: msg,
+            icon: "error",
+            timer: 2000
+          })
+        }
+      } catch (e) {
+        context.commit("setMsg", "An error has occurred")
+      }
+    },
+
+    async register(context, payload) {
+      try {
+        const {msg}  = (await axios.post
+          (`${caps}user`, payload)).data
+          if (msg) {
+            sweet({
+              title: "Registration",
+              text: msg,
+              icon: "success",
+              timer: 2000,
+            });
+            context.dispatch("fetchUsers");
+            router.push({ name: "login" });
+          } else {
+            sweet({
+              title: "Error",
+              text: msg,
+              icon: "error",
+              timer: 2000,
+            });
+          }
+        } catch (e) {
+          context.commit("setMsg", "An error has occured");
+        }
   },
+},
   modules: {
   }
 })

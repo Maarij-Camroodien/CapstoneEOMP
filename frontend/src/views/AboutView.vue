@@ -74,6 +74,7 @@ p {
   transform: translate(-50%, -50%);
   color: black;
   background-color: white;
+  border-radius: 0.5rem;
 }
 
 .centered2 {
@@ -83,6 +84,7 @@ p {
   transform: translate(-50%, -50%);
   color: black;
   background-color: white;
+  border-radius: 0.5rem;
 }
 
 @media only screen and (max-width: 950px){
@@ -94,6 +96,10 @@ p {
   .imgss2 {
     width: 60%;
     content: url(https://i.postimg.cc/3xBWVxtH/ww-global-back-to-edit-2-mobilehero-640x690.jpg)
+  }
+
+  h5 {
+    font-size:  1rem;
   }
 }
 
