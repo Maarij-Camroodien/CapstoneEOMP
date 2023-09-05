@@ -36,7 +36,6 @@ fetchUsers(req, res){
         })
  }
  login(req ,res){
-    {
         const {emailAdd, userPass} = req.body
         const query = `
         SELECT userID , firstName ,
@@ -86,7 +85,6 @@ fetchUsers(req, res){
             }
         })
     }
- }
     async register(req ,res){
     const data = req.body
     data.userPass = await hash(data.userPass,15)
