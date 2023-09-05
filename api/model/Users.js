@@ -42,7 +42,7 @@ fetchUsers(req, res){
         lastName, userAge, Gender, userRole,
         emailAdd, userPass, userProfile
         FROM Users
-        WHERE emailAdd = ${emailAdd};
+        WHERE emailAdd = '${emailAdd}';
         `
         db.query(query, async (err, result)=>{
             if(err) throw err
@@ -61,12 +61,6 @@ fetchUsers(req, res){
                         createToken({
                             emailAdd,
                             userPass
-                        })
-                        // Save a token
-                        res.cookie("LegitUser",
-                        token, {
-                            maxAge: 3600000,
-                            httpOnly: true
                         })
                         if(cResult) {
                             res.json({
