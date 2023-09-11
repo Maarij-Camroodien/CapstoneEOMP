@@ -14,7 +14,9 @@ import FooterComp from './components/FooterComp.vue';
         NavbarComp,
         FooterComp
       },
-        
+      mounted() {
+        this.$store.dispatch("fetchProducts")
+      }  
     }
 </script>
 

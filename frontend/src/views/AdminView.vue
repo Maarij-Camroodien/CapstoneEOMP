@@ -134,7 +134,7 @@
 }
 
 #btns:hover {
-  color: brown;
+  color: red;
   background-color: white;
 }
   </style>

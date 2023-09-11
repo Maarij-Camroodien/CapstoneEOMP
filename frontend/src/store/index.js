@@ -7,6 +7,7 @@ import router from '@/router'
 const caps= "https://capstoneeomp.onrender.com/"
 // const caps= "http://localhost:3000/"
 const {cookies} = useCookies()
+const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
 
 export default createStore({
   state: {
@@ -21,6 +22,9 @@ export default createStore({
     bottoms: null,
     editProduct: null,
     editUser: null,
+    cart: storedCart,
+    products: [],
+    removeFromCart: null
   },
   getters: {
   },
@@ -67,6 +71,12 @@ export default createStore({
     editUsers(state, data) {
       state.editUser = data
     },
+    addToCart(state, product) {
+      state.cart.push(product);
+    },
+    removeFromCart(state, productIndex) {
+      state.cart.splice(productIndex, 1);
+    },
   },
   actions: {
     async fetchUsers(context) {
@@ -77,20 +87,6 @@ export default createStore({
         console.log(e)
       }
     },
-    addToCart(product) {
-      // Send a request to your API to add the product to the cart
-      axios.post('http://your-api-url/cart/add', { product }).then((response) => {
-        // Update the cart in the Vuex store
-        this.$store.commit('addToCart', product);
-      });
-    },
-    removeFromCart(productId) {
-      // Send a request to your API to remove the product from the cart
-      axios.delete(`http://your-api-url/cart/remove/${productId}`).then(() => {
-        // Update the cart in the Vuex store
-        this.$store.commit('removeFromCart', productId);
-      });
-    },
     async fetchProducts(context) {
       try{
         const {data} = await axios.get(`${caps}products`)
@@ -100,10 +96,10 @@ export default createStore({
         console.log(e)
       }
     },
-    async fetchUsers(context) {
+    async fetchUser(context, userID) {
       try{
-        const {data} = await axios.get(`${caps}users`)
-        context.commit("setUsers", data.results)
+        const {data} = await axios.get(`${caps}user/${userID}`)
+        context.commit("setUser", data.results)
         console.log(data.results);
       }catch(e){
         console.log(e)
@@ -118,15 +114,15 @@ export default createStore({
         console.log(error);
       }
     },
-    // async addUser(context, userData){
-    //   try {
-    //     const response = await axios.post(`${caps}user`, userData)
-    //     context.commit('addUser', response.data)
-    //     location.reload()
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // },
+    async addUser(context, userData){
+      try {
+        const response = await axios.post(`${caps}user`, userData)
+        context.commit('addUser', response.data)
+        location.reload()
+      } catch (error) {
+        console.log(error);
+      }
+    },
     async deleteUserFUNC(context, userID){
       try {
         const response = await axios.delete(`${caps}user/${userID}`)
@@ -194,6 +190,7 @@ export default createStore({
         const { msg, token, result } = (await axios.post(`${caps}login`, payload)).data
         if(result) {
           context.commit("setUser", {result, msg});
+          localStorage.setItem("user", JSON.stringify(result))
           cookies.set("LegitUser", {token, msg, result})
           authUser.applyToken(token)
           sweet({
@@ -240,6 +237,22 @@ export default createStore({
         } catch (e) {
           context.commit("setMsg", "An error has occured");
         }
+  },
+  async logOut(context) {
+    context.commit("setUser")
+    cookies.remove("LegitUser")
+    const data = JSON.stringify(localStorage.getItem("user"));
+    if (data) {
+      localStorage.removeItem("user")
+    }
+    router.push({name : 'login'})
+  },
+  async addToCartAction(context, product) {
+    context.commit('addToCart', product);
+    localStorage.setItem('cart', JSON.stringify(context.state.cart));
+  },
+  async removeFromCartAction(context, productIndex) {
+    context.commit('removeFromCart', productIndex);
   },
 },
   modules: {

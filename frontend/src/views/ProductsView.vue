@@ -39,16 +39,7 @@
                           amount: product.amount,
                         }
                     }" class="btn">View More</router-link><span>
-                        <router-link :to=
-                      "{name: 'single',
-                      params: {id: product.prodID},
-                      query: {
-                          prodName: product.prodName,
-                          Category: product.Category,
-                          img: product.prodUrl,
-                          amount: product.amount,
-                        }
-                    }" class="btn">Buy Now</router-link></span>
+                        <button @click="addToCart(product)">Buy Now</button></span>
                 </div>
             </div>
         </div>
@@ -60,6 +51,7 @@
 </template>
 
 <script>
+import sweet from 'sweetalert'
     export default {
         components: {
      },
@@ -70,29 +62,32 @@
         },
         mounted() {
             this.$store.dispatch('fetchProducts')
+        },
+        methods: {
+            addToCart(product) {
+                console.log(product);
+                if (product) {
+                    this.$store.commit('addToCart', product)
+                    localStorage.setItem('cart', JSON.stringify(this.$store.state.cart))
+                    sweet({
+                        title:"YOU GOT...",
+                        text: "NO BITCHES!!!",
+                        type:"error",
+                        timer: 5000
+                    })
+                }else {
+                    sweet({
+                        title : "",
+                        text: "",
+                        type: "",
+                        timer: 2000
+                    })
+                }
+            }
         }
         
     }
 </script>
-<!-- const {cookies} = useCookies() -->
-
-<!-- user() {
-    return this.$store.state.user ||
-    JSON.parse(cookies.get('LegitUser'))
-}
-
-beforeCreate() {
-    return this>$store.dispcaef
-}
-
-methos: {
-    login ()
-    this$store.dispatch('login', this.payload)
-}
-
-mounted() {
-    console.log(cookies.get('LegitUser'))
-} -->
 
 <style scoped>
 
@@ -112,7 +107,7 @@ p {
 }
 
 .nav-link:hover {
-    color: brown;
+    color: red;
 }
 
 .btn {
@@ -124,7 +119,7 @@ p {
 }
 
 .btn:hover {
-  color: brown;
+  color: red;
   background-color: white;
 }
 

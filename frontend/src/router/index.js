@@ -17,12 +17,22 @@ const routes = [
   {
     path: '/about',
     name: 'about',
-    component: () => import('../views/AboutView.vue')
+    component: () => import('../views/AboutView.vue'),
+    beforeEnter() {
+      if(!cookies.get('LegitUser')) {
+        router.push({name: 'login'})
+      }
+    }
   },
   {
     path: '/contactus',
     name: 'contactus',
-    component: () => import('../views/ContactUsView.vue')
+    component: () => import('../views/ContactUsView.vue'),
+    beforeEnter() {
+      if(!cookies.get('LegitUser')) {
+        router.push({name: 'login'})
+      }
+    }
   },
   {
     path: '/admin',
@@ -32,12 +42,22 @@ const routes = [
   {
     path: '/checkout',
     name: 'checkout',
-    component: () => import('../views/CheckoutView.vue')
+    component: () => import('../views/CheckoutView.vue'),
+    beforeEnter() {
+      if(!cookies.get('LegitUser')) {
+        router.push({name: 'login'})
+      }
+    }
   },
   {
     path: '/products',
     name: 'products',
-    component: () => import('../views/ProductsView.vue')
+    component: () => import('../views/ProductsView.vue'),
+    beforeEnter() {
+      if(!cookies.get('LegitUser')) {
+        router.push({name: 'login'})
+      }
+    }
   },
   {
     path: '/signup',
@@ -75,6 +95,16 @@ const routes = [
     name: 'editproduct',
     props: true,
     component: () => import( '../views/EditView.vue')
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: () => import( '../views/ProfileView.vue'),
+    beforeEnter() {
+      if(!cookies.get('LegitUser')) {
+        router.push({name: 'login'})
+      }
+    }
   },
 ]
 

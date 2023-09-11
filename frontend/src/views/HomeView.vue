@@ -108,7 +108,6 @@ p{
   h2 {
   font-family: 'Smythe', cursive;
   font-size: 2rem;
-  margin-top:8rem;
   color: white;
 }
 
@@ -124,7 +123,7 @@ p{
 
 
 .btn:hover {
-  color: brown;
+  color: red;
   background-color: black;
 }
 

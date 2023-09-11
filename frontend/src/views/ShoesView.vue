@@ -96,7 +96,7 @@ p {
 }
 
 .nav-link:hover {
-    color: brown;
+    color: red;
 }
 
 .btn {
@@ -108,7 +108,7 @@ p {
 }
 
 .btn:hover {
-  color: brown;
+  color: red;
   background-color: white;
 }
 

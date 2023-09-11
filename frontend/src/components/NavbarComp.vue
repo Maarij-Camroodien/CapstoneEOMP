@@ -13,9 +13,11 @@
         <router-link to="/admin" class="nav-link" v-show="isAdmin">ADMIN</router-link>
         <router-link to="/products" class="nav-link">PRODUCTS</router-link>
         <router-link to="/contactus" class="nav-link">CONTACT US</router-link>
-        <router-link to="/login" class="nav-link">LOGIN</router-link>
-        <router-link to="/signup" class="nav-link">SIGN-UP</router-link>
+        <router-link to="/login" class="nav-link" v-if="!user">LOGIN</router-link>
+        <router-link to="/signup" class="nav-link" v-if="!user">SIGN-UP</router-link>
+        <!-- <router-link to="/login" class="nav-link" v-show="isAdminUser" @click="logOut">LOG OUT</router-link> -->
         <router-link to="/checkout" class="nav-link">CHECKOUT</router-link>
+        <router-link to="/profile"><i class="bi bi-person-circle"></i></router-link>
       </div>
     </div>
   </div>
@@ -37,9 +39,31 @@ const {cookies} = useCookies()
         },
         isAdmin() {
           return this.result?.userRole?.toLowerCase() === "admin"
+        },
+        isUser() {
+          return this.result?.userRole?.toLowerCase() === "user"
+        },
+        isAdminUser() {
+          return this.result?.userRole?.toLowerCase() === "admin" || this.result?.userRole?.toLowerCase() === "user"
         }
         },
+        // methods: {
+        //   logOut() {
+        //     this.$store.dispatch("logOut")
+        //   },
+        //   hideNavLinks() {
+        //   this.showNavLinks = false;
+        // },
+        // showNavLinks() {
+        // this.showNavLinks = true;
+        // },
+//         data() {
+//   return {
+//     showNavLinks: true
+//   }
+// },
     }
+
 </script>
 
 <style scoped>
@@ -59,8 +83,19 @@ const {cookies} = useCookies()
 }
 
 .nav-link:hover {
-    color: brown;
+    color: red;
 }
 
+.bi {
+  font-size: 1.5rem;
+}
+
+.bi:hover {
+  color: red;
+}
+
+nav a.router-link-exact-active {
+  border-bottom: 2px solid black
+}
 
 </style>

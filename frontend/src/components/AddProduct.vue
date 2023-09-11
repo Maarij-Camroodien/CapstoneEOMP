@@ -55,7 +55,7 @@
     background-color: black;
   }
   .btn:hover {
-    color: #c11111;
+    color: red;
     background-color: white;
     border: black solid 2px;
   }

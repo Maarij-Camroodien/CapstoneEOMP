@@ -1,8 +1,8 @@
 <template>
   
-    <div class="container">
-      <h1 class="continfoh">CONTACT INFO:</h1>
-        <div class="col-12 col-md-12 d-flex align-items-center animate__animated animate__fadeInDown animate__delay-1s 1s">
+    <div class="row">
+        <div class="col-12 col-md-6 conts">
+        <h1>CONTACT INFO:</h1>
           <div class="card contactinf">
             <ul class="list-group list-group-flush">
               <h5 class="itemss list-group-item">
@@ -18,9 +18,8 @@
             </ul>
           </div>
         </div>
-        <h1>CONTACT US</h1>
-      <div class="row">
-        <div class="contt col-12 col-md-12 animate__animated animate__fadeInDown animate__delay-2s 2s">
+        <div class="contt col-12">
+            <h1>CONTACT US</h1>
           <form action="https://formspree.io/f/mnqkqnag" method="POST">
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label"
@@ -75,7 +74,6 @@
           </form>
         </div>
       </div>
-    </div>
   </template>
   
   <script>
@@ -109,6 +107,10 @@
     border: solid black 1px;
     margin: 0;
   }
+
+  .contt {
+    width: 50%;
+  }
   
   /* .subtn:hover {
     color: purple;
@@ -133,11 +135,25 @@
 }
 
 .btn:hover {
-  color: brown;
+  color: red;
   background-color: white;
 }
   
   h1{
       margin-bottom: 2rem;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  .conts {
+    margin-top: 8rem;
+  }
+
+  @media screen and (max-width: 767px){
+    .contt {
+        width: 100%;
+    }
   }
   </style>

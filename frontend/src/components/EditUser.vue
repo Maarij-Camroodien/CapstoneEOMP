@@ -10,14 +10,14 @@
                 </div>
                 <div class="modal-body">
                   <form @submit.prevent="editForm" class="d-flex flex-column gap-5">
-                    <input type="text" v-model="edUser.userID" placeholder="id" name="" id="">
-                    <input type="text" v-model="edUser.firstName" placeholder="name" name="" id="">
-                    <input type="text" v-model="edUser.lastName" placeholder="surname" name="" id="">
-                    <input type="text" v-model="edUser.Gender" placeholder="gender" name="" id="">
-                    <input type="text" v-model="edUser.userRole" placeholder="userRole" name="" id="">
-                    <input type="text" v-model="edUser.emailAdd" placeholder="email" name="" id="">
-                    <input type="text" v-model="edUser.userPass" placeholder="password" name="" id="">
-                    <input type="text" v-model="edUser.userProfile" placeholder="image" name="" id="">
+                    <input type="text" v-model="edUser.userID" placeholder="id" name="" id="" required>
+                    <input type="text" v-model="edUser.firstName" placeholder="name" name="" id="" required>
+                    <input type="text" v-model="edUser.lastName" placeholder="surname" name="" id="" required>
+                    <input type="text" v-model="edUser.Gender" placeholder="gender" name="" id="" required>
+                    <input type="text" v-model="edUser.userRole" placeholder="userRole" name="" id="" required>
+                    <input type="text" v-model="edUser.emailAdd" placeholder="email" name="" id="" required>
+                    <input type="text" v-model="edUser.userPass" placeholder="password" name="" id="" required>
+                    <input type="text" v-model="edUser.userProfile" placeholder="image" name="" id="" required>
                     <button type="submit" class="btn">Save Changes</button>
                    </form>
                 </div>
@@ -60,7 +60,7 @@
     background-color: black;
   }
   .btn:hover {
-    color: #c11111;
+    color: red;
     background-color: white;
     border: black solid 2px;
   }

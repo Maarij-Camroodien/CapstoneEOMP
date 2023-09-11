@@ -1,34 +1,45 @@
 <template>
     <div>
-      <div class="row" style="margin-top: 3rem display: flex; justify-content: center; align-items: center;">
-        <div
-        >
-          <img
-            :src="$route.query.img"
-            :alt="$route.query.img"
-            style="width:14rem;height:18rem;"
-            loading="lazy"
-          />
-          <div class="card-body">
-            <br />
-            <h5 class="card-title">{{ $route.query.prodName }}</h5>
-            <h5 class="card-title">{{ $route.query.Category }}</h5>
-            <h5 class="card-text">R {{ $route.query.amount }}</h5>
-          </div>
-        </div>
-        <div class="col">
-            
-        </div>
-      </div>
+      <h2>Shopping Cart</h2>
+      <ul>
+        <li v-for="item in cart" :key="item.prodID">
+          <img :src="item.prodUrl">
+          {{ item.prodName }} - R {{ item.amount }}
+          <button @click="removeFromCart(index)">Remove</button>
+        </li>
+      </ul>
     </div>
 </template>
 
 <script>
     export default {
-        
+      computed: {
+    cart() {
+      return this.$store.state.cart;
+    },
+  },
+  methods: {
+    removeFromCart(index) {
+      this.$store.dispatch('removeFromCartAction', index);
+      localStorage.setItem('cart', JSON.stringify(this.cart));
+    },
+    updateQuantity(index) {
+      const item = this.cart[index];
+      this.$store.dispatch('addToCartAction', { product: item, quantity: item.quantity });
+      localStorage.setItem('cart', JSON.stringify(this.cart));
+    },
+    redirectToCheckout() {
+      this.$router.push({ name: 'checkout' });
+    }
+  },
     }
 </script>
 
 <style scoped>
+
+img {
+  width: 14rem;
+  height: 18rem;
+}
 
 </style>
