@@ -58,6 +58,12 @@ routes.get('/tops', (req, res)=>{
 routes.get('/bottoms', (req, res)=>{
     products.fetchBottoms(req,res)
 })
+routes.get('/lowest', (req, res)=>{
+    products.fetchPriceAsc(req,res)
+})
+routes.get('/highest', (req, res)=>{
+    products.fetchPriceDesc(req,res)
+})
 
 //Orders Router
 

@@ -59,6 +59,34 @@ fetchBottoms(req, res){
     })  
     })
 }
+fetchPriceAsc(req, res){
+    const query = `
+    Select * From Products 
+    ORDER BY CAST(amount AS DECIMAL(18,2)) ASC;
+    `
+    db.query(query,
+       (err, results) =>{
+        if (err) throw err
+    res.json({
+        status: res.statusCode,
+        results,
+    })  
+    })
+}
+fetchPriceDesc(req, res){
+    const query = `
+    Select * From Products 
+    ORDER BY CAST(amount AS DECIMAL(18,2)) DESC;
+    `
+    db.query(query,
+       (err, results) =>{
+        if (err) throw err
+    res.json({
+        status: res.statusCode,
+        results,
+    })  
+    })
+}
  fetchProduct(req,res){
     const query = `
     SELECT prodID, prodName,
