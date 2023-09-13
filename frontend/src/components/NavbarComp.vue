@@ -84,6 +84,7 @@ const {cookies} = useCookies()
 
 .nav-link:hover {
     color: red;
+    border-bottom: 2px solid red;
 }
 
 .bi {

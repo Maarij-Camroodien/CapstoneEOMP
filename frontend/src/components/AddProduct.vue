@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo">Add</button>
+        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo">Add Product</button>
         <!-- <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Delete</button> -->
         <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
             <div class="modal-dialog">

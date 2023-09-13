@@ -1,15 +1,14 @@
 <template>
     <div>
         <div>
-        <div>
-         <h1><span style="color: black;">KICKS</span></h1>
+         <h1><span style="color: black;">PRODUCTS</span></h1>
         </div>
         <div>
         <nav class="navbar navbar-expand">
   <div class="container-fluid">
-    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button> -->
+    </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav mx-auto">
         <router-link to="/products" class="nav-link">ALL</router-link>
@@ -21,8 +20,8 @@
             FILTER PRICE
           </a>
           <ul class="dropdown-menu">
-            <li><router-link to="/highest" class="dropdown-item">HIGHEST-LOWEST</router-link></li>
-            <li><router-link to="/lowest" class="dropdown-item">LOWEST-HIGHEST</router-link></li>
+            <li><router-link to="/highest" class="dropdown-item">Highest-Lowest</router-link></li>
+            <li><router-link to="/lowest" class="dropdown-item">Lowest-Highest</router-link></li>
             <!-- <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li> -->
           </ul>
@@ -33,8 +32,8 @@
 </nav> 
     </div>
         <div class="my-5 container" >   
-            <div class="row" style="margin-top: 3rem;font-family: 'Merriweather', serif;" v-if="shoes">
-      <div class="car col-12 col-sm-6 col-md-4 p-2" v-for="product in shoes" :key="product.prodID">
+            <div class="row" style="margin-top: 3rem;font-family: 'Merriweather', serif;" v-if="highest">
+      <div class="car col-12 col-sm-6 col-md-4 p-2" v-for="product in highest" :key="product.prodID">
                   <img :src="product.prodUrl" :alt="product.prodName" style="width:14rem;height:18rem;" loading="lazy">
                   <div class="card-body">
                       <br>
@@ -49,19 +48,9 @@
                           Category: product.Category,
                           img: product.prodUrl,
                           amount: product.amount,
-                          quantity: product.quantity
                         }
                     }" class="btn">View More</router-link><span>
-                        <router-link :to=
-                      "{name: 'single',
-                      params: {id: product.prodID},
-                      query: {
-                          prodName: product.prodName,
-                          Category: product.Category,
-                          img: product.prodUrl,
-                          amount: product.amount,
-                        }
-                    }" class="btn">Buy Now</router-link></span>
+                        <button class="btn" @click="addToCart(product)">Buy Now</button></span>
                 </div>
             </div>
         </div>
@@ -69,21 +58,43 @@
            <SpinnerVue/>
         </div>    -->
             </div>
-        </div> 
-    </div>
+        </div>  
 </template>
 
 <script>
+import sweet from 'sweetalert'
     export default {
         components: {
      },
         computed: {
-            shoes(){
-                return this.$store.state.shoes
+            highest(){
+                return this.$store.state.highest
             },
         },
         mounted() {
-            this.$store.dispatch('fetchShoes')
+            this.$store.dispatch('fetchHighest')
+        },
+        methods: {
+            addToCart(product) {
+                console.log(product);
+                if (product) {
+                    this.$store.commit('addToCart', product)
+                    localStorage.setItem('cart', JSON.stringify(this.$store.state.cart))
+                    sweet({
+                        title:"YOU GOT...",
+                        text: "NO BITCHES!!!",
+                        type:"error",
+                        timer: 5000
+                    })
+                }else {
+                    sweet({
+                        title : "",
+                        text: "",
+                        type: "",
+                        timer: 2000
+                    })
+                }
+            }
         }
         
     }
@@ -124,8 +135,12 @@ p {
   background-color: white;
 }
 
+/* .car {
+    border: 1px solid black;
+    border-radius: 1rem;
+} */
+
 nav a.router-link-exact-active {
   border-bottom: 2px solid black
 }
-
 </style>

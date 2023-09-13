@@ -33,8 +33,8 @@
 </nav> 
     </div>
         <div class="my-5 container" >   
-            <div class="row" style="margin-top: 3rem;font-family: 'Merriweather', serif;" v-if="shoes">
-      <div class="car col-12 col-sm-6 col-md-4 p-2" v-for="product in shoes" :key="product.prodID">
+            <div class="row" style="margin-top: 3rem;font-family: 'Merriweather', serif;" v-if="lowest">
+      <div class="car col-12 col-sm-6 col-md-4 p-2" v-for="product in lowest" :key="product.prodID">
                   <img :src="product.prodUrl" :alt="product.prodName" style="width:14rem;height:18rem;" loading="lazy">
                   <div class="card-body">
                       <br>
@@ -78,12 +78,12 @@
         components: {
      },
         computed: {
-            shoes(){
-                return this.$store.state.shoes
+            lowest(){
+                return this.$store.state.lowest
             },
         },
         mounted() {
-            this.$store.dispatch('fetchShoes')
+            this.$store.dispatch('fetchLowest')
         }
         
     }

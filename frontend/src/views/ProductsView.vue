@@ -4,17 +4,28 @@
          <h1><span style="color: black;">PRODUCTS</span></h1>
         </div>
         <div>
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand">
   <div class="container-fluid">
-    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button> -->
+    </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav mx-auto">
         <router-link to="/products" class="nav-link">ALL</router-link>
         <router-link to="/shoes" class="nav-link">KICKS</router-link>
         <router-link to="/tops" class="nav-link">TOPS</router-link>
         <router-link to="/bottoms" class="nav-link">BOTTOMS</router-link>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            FILTER PRICE
+          </a>
+          <ul class="dropdown-menu">
+            <li><router-link to="/highest" class="dropdown-item">HIGHEST-LOWEST</router-link></li>
+            <li><router-link to="/lowest" class="dropdown-item">LOWEST-HIGHEST</router-link></li>
+            <!-- <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+          </ul>
+        </li>
       </div>
     </div>
   </div>
@@ -39,7 +50,7 @@
                           amount: product.amount,
                         }
                     }" class="btn">View More</router-link><span>
-                        <button @click="addToCart(product)">Buy Now</button></span>
+                        <button class="btn" @click="addToCart(product)">Buy Now</button></span>
                 </div>
             </div>
         </div>
@@ -70,8 +81,8 @@ import sweet from 'sweetalert'
                     this.$store.commit('addToCart', product)
                     localStorage.setItem('cart', JSON.stringify(this.$store.state.cart))
                     sweet({
-                        title:"YOU GOT...",
-                        text: "NO BITCHES!!!",
+                        title:"ADDED TO CART",
+                        // text: "NO BITCHES!!!",
                         type:"error",
                         timer: 5000
                     })
@@ -108,6 +119,7 @@ p {
 
 .nav-link:hover {
     color: red;
+    border-bottom: 2px solid red;
 }
 
 .btn {
@@ -127,4 +139,7 @@ p {
     border: 1px solid black;
     border-radius: 1rem;
 } */
+nav a.router-link-exact-active {
+  border-bottom: 2px solid black
+}
 </style>

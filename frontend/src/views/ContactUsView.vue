@@ -1,6 +1,7 @@
 <template>
   
-    <div class="row">
+    <div class="container">
+      <div class="row">
         <div class="col-12 col-md-6 conts">
         <h1>CONTACT INFO:</h1>
           <div class="card contactinf">
@@ -74,6 +75,7 @@
           </form>
         </div>
       </div>
+    </div>
   </template>
   
   <script>
@@ -110,6 +112,7 @@
 
   .contt {
     width: 50%;
+    margin-bottom: 2rem;
   }
   
   /* .subtn:hover {
@@ -154,6 +157,9 @@
   @media screen and (max-width: 767px){
     .contt {
         width: 100%;
+    }
+    .conts {
+      margin-top: 2rem;
     }
   }
   </style>

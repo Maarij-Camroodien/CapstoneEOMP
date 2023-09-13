@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="container">
-          <div class="car">
-          <div class="card" v-if="user" style="width: 30rem; height: 30rem; display: flex; justify-content: center; align-items: center;">
+          <div class="row">
+          <div class="card col-12 col-md-6" v-if="user" style="width: 30rem; height: 30rem; display: flex; justify-content: center; align-items: center;">
   <img :src="user.userProfile" class="card-img-top" :alt="user.firstName">
   <div class="card-body">
     <h5 class="card-title">ID: {{ user.userID }}</h5>
@@ -11,27 +11,27 @@
     <button class="btn" id="btnn" @click="logOut">Log Out</button>
   </div>
 </div>
-</div>
-        <div class="row">
-          <div class="col-12 col-md-4">
+        <div class="styff col-12 col-md-6">
+          <div class="">
             <div class="card" style="width: 25rem; height: 20rem; display: flex; justify-content: center; align-items: center;">
               <h2>Edit Your Account</h2>
   <div class="card-body">
-    <h5 class="card-title">Enter User ID When Editing</h5>
+    <h3 class="card-title">Enter User ID When Editing</h3>
     <button class="btn"><EditProfile/></button>
   </div>
 </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="">
             <div class="card" style="width: 25rem; height: 20rem; display: flex; justify-content: center; align-items: center;">
               <h2>Change Your Password</h2>
   <div class="card-body">
     <h5 class="card-title"></h5>
     <button class="btn"><ChangePass/></button>
+    <h2>Delete Your Account</h2>
   </div>
 </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="">
             <div class="card" style="width: 25rem; height: 20rem; display: flex; justify-content: center; align-items: center;">
               <h2>Delete Your Account</h2>
   <div class="card-body">
@@ -42,6 +42,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div>
 </template>
 
@@ -89,6 +90,10 @@ import ChangePass from '@/components/ChangePass.vue'
 
 <style scoped>
 
+.styff {
+  background-color: black;
+}
+
 img {
   border-radius: 50%;
   width: 15rem;
@@ -105,14 +110,17 @@ img {
   border-radius: 2rem;
 }
 
-.car {
+/* .car {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 h2 {
-  margin-top: 5rem;
+  font-family: 'Smythe', cursive;
+}
+
+h3 {
   font-family: 'Smythe', cursive;
 }
 
@@ -132,6 +140,7 @@ h2 {
   margin-top: 1rem;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 </style>

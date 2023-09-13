@@ -91,6 +91,16 @@ const routes = [
     component: () => import( '../views/BottomsView.vue')
   },
   {
+    path: '/highest',
+    name: 'highest',
+    component: () => import( '../views/HighestView.vue')
+  },
+  {
+    path: '/lowest',
+    name: 'lowest',
+    component: () => import( '../views/LowestView.vue')
+  },
+  {
     path: '/editproduct/:id',
     name: 'editproduct',
     props: true,

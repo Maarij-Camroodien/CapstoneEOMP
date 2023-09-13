@@ -20,6 +20,8 @@ export default createStore({
     shoes: null,
     tops: null,
     bottoms: null,
+    highest: null,
+    lowest: null,
     editProduct: null,
     editUser: null,
     cart: storedCart,
@@ -64,6 +66,12 @@ export default createStore({
     },
     setBottoms(state, bottoms) {
       state.bottoms = bottoms
+    },
+    setHighest(state, highest) {
+      state.highest = highest
+    },
+    setLowest(state, lowest) {
+      state.lowest = lowest
     },
     editProducts(state, data) {
       state.editProduct = data
@@ -161,6 +169,22 @@ export default createStore({
       try{
         const {data} = await axios.get(`${caps}bottoms`)
         context.commit("setBottoms", data.results)
+      }catch(e){
+        console.log(e)
+      }
+    },
+    async fetchHighest (context) {
+      try{
+        const {data} = await axios.get(`${caps}highest`)
+        context.commit("setHighest", data.results)
+      }catch(e){
+        console.log(e)
+      }
+    },
+    async fetchLowest (context) {
+      try{
+        const {data} = await axios.get(`${caps}lowest`)
+        context.commit("setLowest", data.results)
       }catch(e){
         console.log(e)
       }

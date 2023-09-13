@@ -65,7 +65,7 @@
               <td>{{ user.emailAdd }}</td>
               <!-- <td>{{ user.userPass }}</td> -->
               <td>
-                <img :src="user.userProfile" :alt="user.userName" style="width: 7rem; height: 10rem" loading="lazy">
+                <img :src="user.userProfile" :alt="user.userName" style="width: 7rem; height: 7rem; border-radius: 50%" loading="lazy">
               </td>
               <td><button class="btn"><EditUser/></button></td>
               <td>

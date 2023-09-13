@@ -5,7 +5,7 @@
          <h1><span style="color: black;">TOPS</span></h1>
         </div>
         <div>
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand">
   <div class="container-fluid">
     <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -16,6 +16,17 @@
         <router-link to="/shoes" class="nav-link">KICKS</router-link>
         <router-link to="/tops" class="nav-link">TOPS</router-link>
         <router-link to="/bottoms" class="nav-link">BOTTOMS</router-link>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            FILTER PRICE
+          </a>
+          <ul class="dropdown-menu">
+            <li><router-link to="/highest" class="dropdown-item">HIGHEST-LOWEST</router-link></li>
+            <li><router-link to="/lowest" class="dropdown-item">LOWEST-HIGHEST</router-link></li>
+            <!-- <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+          </ul>
+        </li>
       </div>
     </div>
   </div>
@@ -97,6 +108,7 @@ p {
 
 .nav-link:hover {
     color: red;
+    border-bottom: 2px solid red;
 }
 
 .btn {
@@ -110,6 +122,10 @@ p {
 .btn:hover {
   color: red;
   background-color: white;
+}
+
+nav a.router-link-exact-active {
+  border-bottom: 2px solid black
 }
 
 </style>

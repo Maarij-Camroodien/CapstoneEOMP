@@ -39,7 +39,7 @@
       <h1>VINTG</h1>
       <h3 class="slogan">Step Back in Time, Step Up Your Style</h3>
 
-      <div>
+      <div class="cont">
         <div class="imgg1">
         <div class="row">
                 <img src="https://i.postimg.cc/kXbkSXjC/wallpaperflare-com-wallpaper-16.jpg" class="col-md-6 animate__animated animate__fadeInDown" alt="img1" loading="lazy">
@@ -109,6 +109,10 @@ p{
   font-family: 'Smythe', cursive;
   font-size: 2rem;
   color: white;
+  padding-top: 7.5rem;
+  /* display: flex;
+  justify-content: center;
+  align-items: center */
 }
 
 .row {
@@ -128,13 +132,17 @@ p{
 }
 
 
-@media screen and (max-width: 780px){
-  .imgg1-1{
+@media screen and (max-width: 784px){
+  .cont .imgg1-1{
   display: flex;
+  width: 100%;
+  padding: 0;
 }
 
 #immg1{
   display: none;
+  width: 100%;
+  padding: 0;
 }
 
 h2{
@@ -160,6 +168,17 @@ h2{
   width: 100%;
   padding-top: 5rem;
 }
+}
+
+@media screen and (max-width: 1100px){
+  h2 {
+    padding-top: 3rem;
+  }
+} 
+@media screen and (max-width: 1190px){
+  h2 {
+    padding-top: 4rem
+  }
 }
 
 
