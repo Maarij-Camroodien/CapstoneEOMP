@@ -30,6 +30,14 @@
             <div class="modal-body">
               <form @submit.prevent="editForm" class="d-flex flex-column gap-5">
                 <input
+                  type="number"
+                  v-model="edUser.userID"
+                  placeholder="ID"
+                  name=""
+                  id=""
+                  required
+                />
+                <input
                   type="text"
                   v-model="edUser.userPass"
                   placeholder="password"
@@ -56,6 +64,7 @@
     data() {
       return {
         edUser: {
+          userID: "",
           userPass: "",
         },
       };
@@ -70,12 +79,12 @@
   
   <style scoped>
   .btn {
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: white;
   }
   .btn:hover {
     color: red;
-    background-color: white;
+    background-color: black;
     border: black solid 2px;
   }
   

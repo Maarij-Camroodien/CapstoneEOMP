@@ -82,9 +82,9 @@ import sweet from 'sweetalert'
                     localStorage.setItem('cart', JSON.stringify(this.$store.state.cart))
                     sweet({
                         title:"ADDED TO CART",
-                        // text: "NO BITCHES!!!",
+                        // text: "",
                         type:"error",
-                        timer: 5000
+                        timer: 2000
                     })
                 }else {
                     sweet({
@@ -134,6 +134,7 @@ p {
   color: red;
   background-color: white;
 }
+
 
 /* .car {
     border: 1px solid black;

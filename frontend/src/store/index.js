@@ -29,6 +29,12 @@ export default createStore({
     removeFromCart: null
   },
   getters: {
+    getTotal(state) {
+      return state.cart.reduce((total, item) => {
+        const sumof = item.amount || 0;
+        return total + sumof;
+      }, 0);
+    },
   },
   mutations: {
     setUsers(state, users) {
@@ -268,6 +274,7 @@ export default createStore({
     const data = JSON.stringify(localStorage.getItem("user"));
     if (data) {
       localStorage.removeItem("user")
+      localStorage.removeItem("cart")
     }
     router.push({name : 'login'})
   },

@@ -8,11 +8,23 @@
     <h5 class="card-title">ID: {{ user.userID }}</h5>
     <h5 class="card-title">{{ user.firstName }} {{ user.lastName }}</h5>
     <h5 class="card-text">{{ user.userRole }}</h5>
-    <button class="btn" id="btnn" @click="logOut">Log Out</button>
+    <button class="btn" @click="logOut">Log Out</button>
   </div>
 </div>
-        <div class="styff col-12 col-md-6">
-          <div class="">
+<div class="stuff col-12 col-md-6">
+  <div>
+  <div class="card" style="width: 30rem%; height: 40rem;">
+    <h2 class="hqs">Edit Your Details</h2>
+    <h3 class="hqss">Enter User ID When Editing</h3>
+    <button class="btn" id="btnn"><EditProfile/></button>
+    <h2 class="hqs">Change Password</h2>
+    <button class="btn" id="btnn"><ChangePass/></button>
+    <h2 class="hqs">Delete Your Account</h2>
+    <router-link to="/login" class="btn btn-dark" id="btns" @click="deleteUser(user.userID)">Delete</router-link>
+  </div>
+  </div>
+</div>
+  <!-- <div class="">
             <div class="card" style="width: 25rem; height: 20rem; display: flex; justify-content: center; align-items: center;">
               <h2>Edit Your Account</h2>
   <div class="card-body">
@@ -39,8 +51,7 @@
     <button class="btn"><EditProfile/></button>
   </div>
 </div>
-          </div>
-        </div>
+          </div> -->
       </div>
     </div>
     </div>
@@ -83,15 +94,27 @@ import ChangePass from '@/components/ChangePass.vue'
           logOut() {
             this.$store.dispatch("logOut")
           },
+          deleteUser(userID) {
+        this.$store.dispatch('deleteUserFUNC', userID);
+      },
         },
         
     }
 </script>
 
 <style scoped>
+.stuff {
+  display: flex;
+  justify-content: center;
+}
+.hqs {
+  font-family: 'Taviraj', serif;
+  margin-top: 1rem;
+  height: 12vh;
+}
 
-.styff {
-  background-color: black;
+.hqss {
+  font-family: 'Taviraj', serif;
 }
 
 img {
@@ -99,6 +122,12 @@ img {
   width: 15rem;
   height: 15rem;
 }
+
+#btnn {
+  padding: 0;
+  margin: 0;
+}
+
 
 .card {
   display: flex;
@@ -108,6 +137,7 @@ img {
   color: white;
   border: 1rem solid black;
   border-radius: 2rem;
+  width: 30rem;
 }
 
 /* .car {
@@ -124,14 +154,14 @@ h3 {
   font-family: 'Smythe', cursive;
 }
 
-#btnn {
+.btn {
   color: black;
   background-color: white;
   font-family: 'Taviraj', serif;
 }
 
 
-#btnn:hover {
+.btn:hover {
   color: red;
   background-color: black;
 }

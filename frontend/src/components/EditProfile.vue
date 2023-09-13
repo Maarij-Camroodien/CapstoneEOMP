@@ -106,12 +106,12 @@ export default {
 
 <style scoped>
 .btn {
-  color: white;
-  background-color: black;
+  color: black;
+  background-color: white;
 }
 .btn:hover {
   color: red;
-  background-color: white;
+  background-color: black;
   border: black solid 2px;
 }
 
