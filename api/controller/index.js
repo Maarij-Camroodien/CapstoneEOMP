@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const routes = express.Router()
-const {users, products, orders} = require('../model')
+const {users, products} = require('../model')
 
 //User Router
 
@@ -63,28 +63,6 @@ routes.get('/lowest', (req, res)=>{
 })
 routes.get('/highest', (req, res)=>{
     products.fetchPriceDesc(req,res)
-})
-
-//Orders Router
-
-
-routes.get('/orders', (req, res)=>{
-    orders.fetchOrders(req, res)
-})
-routes.get('/order/:id', (req, res)=>{
-    orders.fetchOrder(req,res)
-})
-routes.post('/order', bodyParser.json(),(req, res)=>{
-    orders.registerOrder(req ,res)
-})
-routes.put('/order/:id', bodyParser.json(),(req, res)=>{
-    orders.updateOrders(req, res)
-})
-routes.patch('/order/:id', bodyParser.json(),(req, res)=>{
-    orders.updateOrders(req, res)
-})
-routes.delete('/order/:id',(req ,res)=>{
-    orders.deleteOrders(req, res)
 })
 
 
