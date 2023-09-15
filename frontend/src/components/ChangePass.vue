@@ -30,7 +30,7 @@
             <div class="modal-body">
               <form @submit.prevent="editForm" class="d-flex flex-column gap-5">
                 <input
-                  type="number"
+                  type="text"
                   v-model="edUser.userID"
                   placeholder="ID"
                   name=""
@@ -72,6 +72,7 @@
     methods: {
       async editForm() {
         this.$store.dispatch("editUser", this.edUser);
+        location.reload()
       },
     },
   };

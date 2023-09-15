@@ -1,28 +1,35 @@
 <template>
     <div>
+      <h1>PROFILE</h1>
         <div class="container">
           <div class="row">
-          <div class="card col-12 col-md-6" v-if="user" style="width: 30rem; height: 30rem; display: flex; justify-content: center; align-items: center;">
+          <div class="qqq col-12 col-md-6">
+            <div class="card" v-if="user" style="width: 100%; height: 30rem; margin-top: 3rem;">
   <img :src="user.userProfile" class="card-img-top" :alt="user.firstName">
   <div class="card-body">
     <h5 class="card-title">ID: {{ user.userID }}</h5>
     <h5 class="card-title">{{ user.firstName }} {{ user.lastName }}</h5>
     <h5 class="card-text">{{ user.userRole }}</h5>
     <button class="btn" @click="logOut">Log Out</button>
+    <!-- <h2 class="hs">DELETE YOUR ACCOUNT</h2> -->
+    <div>
+      <router-link to="/login" class="btn btn-dark" id="btns" @click="deleteUser(user.userID)" style="margin-top: 1rem;">Delete Account</router-link>
+    </div>
   </div>
 </div>
-<div class="stuff col-12 col-md-6">
+          </div>
+<div class="qq col-12 col-md-6">
+  <div class="stuff">
   <div>
-  <div class="card" style="width: 30rem%; height: 40rem;">
-    <h2 class="hqs">Edit Your Details</h2>
-    <h3 class="hqss">Enter User ID When Editing</h3>
+  <div class="card" style="width: 100%; height: 35rem;">
+    <h2 class="hqs">EDIT YOUR DETAILS</h2>
+    <h3 class="hqss">ENTER USER ID WHEN EDITING</h3>
     <button class="btn" id="btnn"><EditProfile/></button>
-    <h2 class="hqs">Change Password</h2>
+    <h2 class="hqs">CHANGE PASSWORD</h2>
     <button class="btn" id="btnn"><ChangePass/></button>
-    <h2 class="hqs">Delete Your Account</h2>
-    <router-link to="/login" class="btn btn-dark" id="btns" @click="deleteUser(user.userID)">Delete</router-link>
   </div>
   </div>
+</div>
 </div>
   <!-- <div class="">
             <div class="card" style="width: 25rem; height: 20rem; display: flex; justify-content: center; align-items: center;">
@@ -74,10 +81,11 @@ import ChangePass from '@/components/ChangePass.vue'
     },
   },
     beforeCreate() {
-    this.$store.dispatch("fetchUser");
+    // this.$store.dispatch("fetchUser");
     },
     mounted() {
     console.log(cookies.get("LegitUser"));
+    // this.$store.dispatch('fetchUser');
     },
     created() {
       const storedUser = localStorage.getItem("user");
@@ -96,6 +104,9 @@ import ChangePass from '@/components/ChangePass.vue'
           },
           deleteUser(userID) {
         this.$store.dispatch('deleteUserFUNC', userID);
+        cookies.remove('LegitUser')
+        localStorage.removeItem('user')
+        localStorage.removeItem('cart')
       },
         },
         
@@ -103,18 +114,30 @@ import ChangePass from '@/components/ChangePass.vue'
 </script>
 
 <style scoped>
+
+.row {
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 1rem;
+}
 .stuff {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .hqs {
-  font-family: 'Taviraj', serif;
-  margin-top: 1rem;
-  height: 12vh;
+  margin-top: 3rem;
 }
 
-.hqss {
-  font-family: 'Taviraj', serif;
+.hs {
+  margin-top: 1rem;
+}
+
+/* .hqss {
+} */
+
+.qqq{
+   border-right: 1px solid white;
 }
 
 img {
@@ -128,6 +151,9 @@ img {
   margin: 0;
 }
 
+#btns {
+  margin-bottom: 4rem;
+}
 
 .card {
   display: flex;
@@ -138,6 +164,7 @@ img {
   border: 1rem solid black;
   border-radius: 2rem;
   width: 30rem;
+  margin-top: 1rem;
 }
 
 /* .car {
@@ -171,6 +198,14 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (max-width: 767px){
+  .qqq {
+    border-right: none;
+    border-bottom: 1px solid white;
+    width: 80%;
+  }
 }
 
 </style>

@@ -14,7 +14,7 @@
             <h5 class="card-title">{{ $route.query.prodName }}</h5>
             <h5 class="card-title">{{ $route.query.Category }}</h5>
             <h6 class="card-text">R {{ $route.query.amount }}</h6>
-            <button class="btn" @click="addToCart(product)">Buy Now</button><br> 
+            <!-- <button class="btn" @click="addToCart(product)">Buy Now</button><br>  -->
             <router-link to="/products" class="btn">Continue Shopping</router-link>
           </div>
         </div>
@@ -43,14 +43,14 @@
                     sweet({
                         title:"ADDED TO CART",
                         // text: "",
-                        type:"error",
+                        type:"success",
                         timer: 2000
                     })
                 }else {
                     sweet({
-                        title : "",
+                        title : "NOT ADDED TO CSRT",
                         text: "",
-                        type: "",
+                        type: "error",
                         timer: 2000
                     })
                 }

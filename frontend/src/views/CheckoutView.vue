@@ -24,7 +24,7 @@
       <div class="card-body">
         <h5 class="card-title">{{ item.prodName }}</h5>
         <p class="card-text" style="color: black;">R {{ item.amount }}</p>
-        <button class="btn" @click="removeFromCart(index)">Remove</button>
+        <button class="btn" id="btnn" @click="removeFromCart(index)">Remove</button>
         <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
       </div>
     </div>
@@ -123,7 +123,7 @@
               />  
             </div>
           </div>   
-            <button class="btn" id="btnn" type="submit">Checkout</button>
+            <button class="btn" id="btnnn" @click="checkout" type="submit">Checkout</button>
           </form>
       </div>
       </div>
@@ -150,6 +150,14 @@ import { mapGetters } from 'vuex';
       this.$store.dispatch('removeFromCartAction', index);
       localStorage.setItem('cart', JSON.stringify(this.cart));
     },
+
+    checkout() {
+      sweet({
+        title: 'Order Complete',
+        icon: 'success',
+        timer: 2000,
+      });
+    },
     // updateQuantity(index) {
     //   const item = this.cart[index];
     //   this.$store.dispatch('addToCartAction', { product: item, quantity: item.quantity });
@@ -174,12 +182,25 @@ img {
   height: 18rem;
 }
 
-.btn {
+#btnn {
   color: white;
   border: 1px solid black;
   background-color: black;
   font-family: 'Taviraj', serif;
   margin: 2px;
+}
+
+#btnnn {
+  color: black;
+  border: 1px solid black;
+  background-color: white;
+  font-family: 'Taviraj', serif;
+  margin: 2px;
+}
+
+#btnnn:hover {
+  color: red;
+  background-color: black;
 }
 
 .card {
@@ -205,7 +226,7 @@ li {
 
 } */
 
-.btn:hover {
+#btnn:hover {
   color: red;
   background-color: white;
 }

@@ -1,7 +1,6 @@
 <template>
     <div>
       <h1>Admin</h1>
-      <div>
         <h2>Products</h2>
         <button class="btn"><AddProduct/></button>
         <div class="table-responsive" style="margin-top: 1rem" >
@@ -36,7 +35,6 @@
             </tbody>
           </table>
         </div>
-      </div>
       <h2>Users</h2>
       <button class="btn"><AddUser/></button>
       <div class="table-responsive" style="margin-top: 1rem">
@@ -116,6 +114,7 @@
     }
   };
   </script>
+  
   <style scoped>
   h2 {
     margin-top: 2rem;

@@ -26,7 +26,9 @@ export default createStore({
     editUser: null,
     cart: storedCart,
     products: [],
-    removeFromCart: null
+    removeFromCart: null,
+    filtername: null,
+    filtercategory: null,
   },
   getters: {
     getTotal(state) {
@@ -90,6 +92,12 @@ export default createStore({
     },
     removeFromCart(state, productIndex) {
       state.cart.splice(productIndex, 1);
+    },
+    filtername(state, filtername) {
+      state.filtername = filtername
+    },
+    filtercategory(state, filtercategory) {
+      state.filtercategory = filtercategory
     },
   },
   actions: {
@@ -191,6 +199,15 @@ export default createStore({
       try{
         const {data} = await axios.get(`${caps}lowest`)
         context.commit("setLowest", data.results)
+      }catch(e){
+        console.log(e)
+      }
+    },
+    async filtercategory(context) {
+      try{
+        const {data} = await axios.get(`${caps}filterCategory`)
+        context.commit("filtercategory", data.results)
+        console.log(data.results);
       }catch(e){
         console.log(e)
       }

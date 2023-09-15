@@ -84,6 +84,8 @@
 </template>
 
 <script>
+import { useCookies } from "vue3-cookies";
+const { cookies } = useCookies();
 export default {
   data() {
     return {
@@ -99,6 +101,9 @@ export default {
   methods: {
     async editForm() {
       this.$store.dispatch("editUser", this.edUser);
+      cookies.remove('LegitUser')
+      localStorage.removeItem('user')
+      location.reload()
     },
   },
 };

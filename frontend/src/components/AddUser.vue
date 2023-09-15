@@ -13,7 +13,7 @@
                     <input type="text" v-model="userData.userID" placeholder="id" name="" id="">
                     <input type="text" v-model="userData.firstName" placeholder="name" name="" id="">
                     <input type="text" v-model="userData.lastName" placeholder="surname" name="" id="">
-                    <input type="text" v-model="userData.Gender" placeholder="surname" name="" id="">
+                    <input type="text" v-model="userData.Gender" placeholder="gender" name="" id="">
                     <input type="text" v-model="userData.userRole" placeholder="userRole" name="" id="">
                     <input type="text" v-model="userData.emailAdd" placeholder="email" name="" id="">
                     <input type="text" v-model="userData.userPass" placeholder="password" name="" id="">

@@ -145,22 +145,18 @@
     align-items: center;
 }
 
-input {
-    width: 50rem
-}
 
 form {
     margin-top: 1rem;
     margin-bottom: 1rem;
+    padding: 1rem;
 }
 
 .forms {
     background-color: black;
     border: 1px solid black;
     border-radius: 1rem;
-    width: 60%;
-    display: flex;
-    justify-content: center;
+    width: 50%;
 }
 
 .stuff {
